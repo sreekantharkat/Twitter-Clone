@@ -1,0 +1,60 @@
+POST http://localhost:3000/register/
+
+Content-Type : application/json
+{
+  "username": "adam_richard",
+  "password": "richard_567",
+  "name": "Adam Richard",
+  "gender": "male"
+}
+
+
+###
+POST http://localhost:3000/login/
+Content-Type : application/json
+
+{
+  "username":"JoeBiden",
+  "password":"biden@123"
+}
+
+
+###
+GET http://localhost:3000/user/tweets/feed/
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
+
+
+###
+GET http://localhost:3000/user/following/
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
+
+###
+GET http://localhost:3000/user/followers/
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
+
+###
+GET http://localhost:3000/tweets/7/
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
+
+###
+GET http://localhost:3000/tweets/17/likes
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
+
+###
+GET http://localhost:3000/tweets/17/replies
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
+
+GET http://localhost:3000/users/tweets/
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
+
+###
+POST http://localhost:3000/user/tweets/
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
+Content-Type : application/json
+
+{
+   "tweet": "The Mornings..."
+}
+
+DELETE http://localhost:3000/tweets/16/
+Authorization : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpvZUJpZGVuIiwiaWF0IjoxNzA5MTIzMTYyfQ.FpGbTcydbnl6mrFa5MuxDS7yV3tvdQT0_j40wMhpM4c
