@@ -55,11 +55,16 @@ const isUserFollowing = async (request, response, next) => {
   const {username} = request
   const {tweetId} = request.params
 
+  const userIdQuery = `
+  SELECT * FROM USER WHERE USER.USERNAME = "${username}";
+  `
+  const {user_id} = await db.get(userIdQuery)
+
   const followingUserQuery = `
   SELECT * FROM USER
   LEFT JOIN FOLLOWER ON
   FOLLOWER.FOLLOWING_USER_ID = USER.USER_ID
-  WHERE FOLLOWER_USER_ID = "${username}";
+  WHERE FOLLOWER_USER_ID = ${user_id};
   `
   const dbUser = await db.all(followingUserQuery)
   const dbResult = dbUser.map(eachItem => {
@@ -85,9 +90,8 @@ const isUserFollowing = async (request, response, next) => {
 
   if (findTheIndex === -1) {
     response.status(401)
-    response.send('Invalid Request')
+    response.send('User Not following')
   } else {
-    request.username = username
     next()
   }
 }
@@ -165,21 +169,6 @@ app.get('/user/tweets/feed/', authenticateToken, async (request, response) => {
    order by tweet.date_time desc limit 4;
   `
 
-  /* 
-  SELECT
-  user.username, tweet.tweet, tweet.date_time AS dateTime
-  FROM
-  follower
-  INNER JOIN tweet
-  ON follower.following_user_id = tweet.user_id
-  INNER JOIN user
-  ON tweet.user_id = user.user_id
-  WHERE
-  follower.follower_user_id = ${id of the loggedin user}
-  ORDER BY
-  tweet.date_time DESC
-  LIMIT 4;`
-  */
   const dbResponse = await db.all(getTweetsFeed)
   const result = dbResponse.map(eachItem => {
     const {username, tweet, date_time} = eachItem
@@ -284,9 +273,9 @@ app.get(
 
     const likeResponse = await db.all(likesQuery)
     const likedUsers = {likes: []}
-    likeResponse.map(eachItem => {
-      return likedUsers.likes.push(eachItem.name)
-    })
+    for (let eachItem of likeResponse) {
+      likedUsers.likes.push(eachItem.username)
+    }
     response.send(likedUsers)
   },
 )
